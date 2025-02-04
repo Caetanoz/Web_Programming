@@ -1,0 +1,33 @@
+.navbar {
+    background-color: gray;
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+  }
+  
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .nav-item {
+    margin-right: 10px;
+  }
+  
+  .nav-link {
+    color: white;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-nav {
+      flex-direction: column;
+    }
+    
+    .nav-item {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  }
+  

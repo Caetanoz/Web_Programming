@@ -1,0 +1,38 @@
+.container{
+    padding-top: 10px;
+    padding-bottom: 25px;
+    padding-left: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+
+  .py-5.text-center.container {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 300%;
+    font-family: 'Times New Roman', Times, serif;
+  } 
+
+  .container h4 a {
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: large;
+    background-color: rgb(4, 109, 247);
+    border-radius: 6px;
+    color: #FFFFFF;
+  }
+
+  .py-5.text-center.container h1{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100%;
+    font-family: 'Times New Roman', Times, serif;
+  } 
+  

@@ -1,0 +1,21 @@
+
+<br>
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3" *ngIf="events">
+              <div class="col" *ngFor="let event of events; let i=index;">
+                <div class="card shadow-sm">
+                  <app-images [imgname]="event.images"></app-images>
+                  <div class="card-body">
+                    <p class="card-text" style="text-align: center; font-size: large;">{{event.name}}</p>
+                    <p class="card-text">Description:</p>
+                    <p class="card-text">- {{event.description}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group" style="margin: auto;">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary" style="text-align: center; margin: auto;" (click)="view(event._id)">+Info</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  </div>
+</div>

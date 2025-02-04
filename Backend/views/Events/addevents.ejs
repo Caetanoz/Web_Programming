@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheets/signup.css">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+    <title>ADD Events</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    
+  <header data-bs-theme="dark">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">LusoTicket</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/locals">Locals</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/events">Events</a>
+            </li>               
+            <% if(role === 'Admin' || role === 'Employee'){ %>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin" >ADMIN</a>
+            </li>
+            <% } %>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout" >Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
+  
+  <main class="form-signin w-100 m-auto">
+        <form action="/events/addevent" enctype="multipart/form-data" method="post">
+          <h2>LusoTickets</h2>
+          <h1 class="h3 mb-3 fw-normal">Add an Event!</h1>
+            
+          <div class="form-floating">
+            <input type="text" class="form-control" id="Inputname" name="name" required>
+            <label for="floatingInput">Name</label>
+            <div class="invalid-feedback">Your name is required.</div>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="form-floating">
+            <input type="text" class="form-control" id="Inputlat" name="latitude">
+            <label for="floatingInput">Latitude</label>
+            <div class="invalid-feedback">Your latitude are required.</div>
+          </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="Inputlong" name="longitude">
+            <label for="floatingInput">Longitude</label>
+            <div class="invalid-feedback">Your longitude are required.</div>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="form-floating">
+            <input type="text" class="form-control" id="Inputype" name="type" required>
+            <label for="floatingInput">Type</label>
+            <div class="invalid-feedback">Your type is needed.</div>
+          </div>
+          <div class="form-floating">
+            <input type="number" class="form-control" id="Inputcapacity" onchange="numberintegerCapacity()" min="0" name="capacity" required>
+            <label for="floatingInput">Capacity</label>
+            <div class="invalid-feedback">Your capacity is needed.</div>
+          </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" hidden id="Inputseat" name="hasseats" value="" placeholder="Seated..." required>
+            <p>Is seated?:</p>
+            <select name="dropseat" id="dropseat" onclick="addEventListener()" required>
+              <option > Select One</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+            <div class="invalid-feedback">Your role is required.</div>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="form-floating">
+            <input type="date" class="form-control" id="Inputfirstday" name="firstday" onchange="updateMinDate()">
+            <label for="floatingInput">First Day</label>
+            <div class="invalid-feedback">First day is needed.</div>
+          </div>
+          <div class="form-floating">
+            <input type="date" class="form-control" id="Inputlastday" name="lastday" >
+            <label for="floatingInput">Last day</label>
+            <div class="invalid-feedback">Last day is needed.</div>
+          </div>
+
+          <div class="form-floating">
+            <input type="time" class="form-control" id="Inputhour" name="hour" >
+            <label for="floatingInput">Hour</label>
+            <div class="invalid-feedback">Starting Hour is needed.</div>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="form-floating">
+            <input type="number" class="form-control" id="Inputduration" min="0" onchange="numberintegerDuration()" name="duration" >
+            <label for="floatingInput">Duration</label>
+          </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="Inputdescr" name="description" >
+            <label for="floatingInput">Description</label>
+          </div>
+          <div class="form-floating">
+            <input type="number" class="form-control" id="Inputprice" onchange="numberinteger()" min="0" name="price" required>
+            <label for="floatingInput">Ticket Price</label>
+            <div class="invalid-feedback">Your price is required.</div>
+          </div>
+
+          <hr class="my-4">
+
+          <img src="img.png" id="changeimg" style=" height: 150px; width: 150px; border-radius: 50%; object-fit: cover; background: #dfdfdf;">
+
+          <hr class="my-4">
+
+          <div class="form-floating">
+
+              <input class="inputfile" id="uploadimg" type="file" name="file" onchange="previewImage(event)"  required />
+              <br>
+              <hr class="my-4">  
+              <br>
+              <input class="button-sign" type="submit" onclick="checkDropdown()" value="Add"  />
+          </div>
+          
+          <hr class="my-4">  
+  
+        </form>
+
+        <footer class="text-body-secondary py-5">
+          <div class="container">
+            <p class="float-end mb-1">
+              <a href="#">Back to top</a>
+            </p>
+            <p class="mb-1">© 2022–2023</p>
+            <p class="mb-0">Thanks for stoping by LusoTickets! <a href="/"> Visit the homepage!</a>.</p>
+          </div>
+        </footer>
+      </main>
+
+        <script>
+
+      function updateMinDate() {
+        var firstDay = new Date(document.getElementById("Inputfirstday").value);
+        var minDate = firstDay.toISOString().split('T')[0];
+        document.getElementById("Inputlastday").setAttribute("min", minDate);
+        
+        // Limpar o valor do input da data de fim se for anterior à data de início
+        var lastDay = new Date(document.getElementById("Inputlastday").value);
+        if (lastDay < firstDay) {
+          document.getElementById("Inputlastday").value = "";
+        }
+      }
+
+          function numberinteger() {
+          var input = document.getElementById("Inputprice").value;
+          var number = parseInt(input);
+          if (isNaN(number) || number < 0 ) {
+            alert("Por favor, insira um número inteiro positivo!");
+            document.getElementById("Inputprice").value = "";
+          }
+        }
+
+        function numberintegerDuration() {
+          var input = document.getElementById("Inputduration").value;
+          var number = parseInt(input);
+          if (isNaN(number) || number < 0 ) {
+            alert("Por favor, insira um número inteiro positivo!");
+            document.getElementById("Inputduration").value = "";
+          }
+        }
+
+        function numberintegerCapacity() {
+          var input = document.getElementById("Inputcapacity").value;
+          var number = parseInt(input);
+          if (isNaN(number) || number < 0 ) {
+            alert("Por favor, insira um número inteiro positivo!");
+            document.getElementById("Inputcapacity").value = "";
+          }
+        }
+
+        var dropdown = document.getElementById("dropseat");
+        var input = document.getElementById("Inputseat");
+
+        function checkDropdown(){
+          if(input.value == ""){
+            alert('Deves escolher se o evento é sentado ou não !!')
+          }
+        }
+
+        // Adiciona um listener de mudança ao elemento select
+        dropdown.addEventListener("change", function() {
+        // Atualiza o valor do input com o valor selecionado do droprole
+            input.value = dropdown.value;
+        });
+
+        function previewImage(event) {
+          var reader = new FileReader();
+          reader.onload = function(){
+              var preview = document.getElementById('changeimg');
+              preview.src = reader.result;
+          };
+          reader.readAsDataURL(event.target.files[0]);
+        }
+
+        </script>
+
+
+</body>
+</html>

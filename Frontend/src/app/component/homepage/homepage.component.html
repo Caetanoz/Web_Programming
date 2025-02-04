@@ -1,0 +1,12 @@
+<main>
+    <header>
+        <app-nav-bar></app-nav-bar>
+    </header>
+    <app-local-list></app-local-list>
+    <div class="custom-alert" *ngIf="message">
+        <p>{{ message }}</p>
+    </div>
+    <h1 style="font-style: normal; text-align: center; font-family: 'Times New Roman', Times, serif;">EVENTS</h1>
+    <app-homepage-events></app-homepage-events>
+    <app-footer></app-footer>
+</main>

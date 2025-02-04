@@ -1,0 +1,74 @@
+<app-nav-bar></app-nav-bar>
+<section class="py-5 text-center container" *ngIf="event">
+  <div class="row py-lg-5">
+   <h3>{{event.name}}</h3>
+ </div>
+</section>
+    <div class="custom-alert" *ngIf="message">
+      <p>{{ message }}</p>
+    </div>
+    <div class="container" *ngIf="event">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+        <div class="col">
+          <div class="card shadow-sm" >
+            <div class="card-body" >
+              <ul class="card-text" style="list-style: none; float: left; width: 100%;">
+                <app-images *ngIf="event.images" [imgname]="event.images" style="padding-left: 10px; float: right; width: 50%; height: auto; margin-top: 20px;"></app-images>
+                <li></li>
+                <hr class="my-4">
+                <p>--- Location ---</p>
+                <li>Street : {{event.address}}</li>
+                <li>City : {{event.city}}</li>
+                <hr class="my-4">
+                <li>Type : {{event.type}}</li>
+                <li>Capacity : {{event.capacity}}</li>
+                <li>Seated? : {{event.hasseats}}</li>
+                <hr class="my-4">
+                <li>Starting Hour : {{event.hour}}</li>
+                <li>First Day : {{event.firstday}}</li>
+                <li>Last Day: {{event.lastday}}</li>
+
+                <hr class="my-4">
+                <li *ngIf="event.duration">Duration : {{event.duration}} hours</li>
+                  <br>
+                  <ul class="card-text prices-container">
+                    <li class="float-center price-item">
+                      <div class="price-box">Price</div>
+                      <div class="value-box">{{ event.price }} €</div>
+                        <input type="number" id="price" name="price" [(ngModel)]="ticket.ticketprice" value="{{ event.price }}" hidden>
+                        <br>
+                      <div class="value.box" style="width: 100%;">
+                        <input type="number" class="quantity-input" min="0" [(ngModel)]="ticket.quantity" name="quantity" placeholder="Quantity" (input)="updateTotal(event.price)" required>
+                        <input type="number" *ngIf="quantity" value="{{quantity}}" hidden>
+                      </div>
+                    </li>
+                  </ul>
+                    <br>
+                    <br>
+                  <li>Total: <div id="resultado" *ngIf="quantity">{{ calculateTotal() }}€</div></li>
+                  <br>
+                  <hr class="my-4">
+                  <br>
+                  <div class="form-floating" style="width: 65%; justify-content: center; align-items: center; display: flex; margin: auto;">
+                    <input type="email" class="form-control" id="Inputemail" name="email" [(ngModel)]="ticket.email" placeholder="name@example.com" required>
+                    <label for="floatingInput">Email</label>
+                    <div class="invalid-feedback">Your email is required.</div>
+                  </div>
+                  <hr class="my-4" style="width: 25%; justify-content: center; align-items: center; display: flex; margin: auto;">
+                  <div class="form-floating" style="width: 65%; justify-content: center; align-items: center; display: flex; margin: auto;">
+                    <input type="text" class="form-control" id="Inputnif" name="nif" min="99999999" max="999999999" [(ngModel)]="ticket.nif" placeholder="NIF" required>
+                    <label for="floatingInput">NIF</label>
+                    <div class="invalid-feedback">Your nif is required.</div>
+                  </div>
+              </ul>
+              <div class="d-flex justify-content-between align-items-center"></div>
+              <div class="btn-group" style=" float: right; padding: 10px;">
+                  <button type="submit" class="btn btn-sm btn-checkout" (click)="checkout(event._id, event.name, event.address, event.duration)">Checkout</button>
+            </div>
+            <br>
+            <h4><a href="/events" style="font-size: medium; color: black;">BACK</a></h4>
+          </div>
+
+        </div>
+      </div>
+    </div>

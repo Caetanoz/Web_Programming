@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheets/signup.css">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+    <title>Register</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    
+  <header data-bs-theme="dark">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">LusoTicket</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/locals">Locals</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/events">Events</a>
+            </li>               
+            <% if(role === 'Admin' || role === 'Employee'){ %>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin" >ADMIN</a>
+            </li>
+            <% } %>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout" >Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
+  
+  <main class="form-signin w-100 m-auto">
+        <form action="/users/save" method="post">
+          <h2>LusoTickets</h2>
+          <h1 class="h3 mb-3 fw-normal">Create an account!</h1>
+            
+          <div class="form-floating">
+            <input type="text" class="form-control" id="Inputname" name="name" placeholder="Francisco" required>
+            <label for="floatingInput">Name</label>
+            <div class="invalid-feedback">Your name is required.</div>
+          </div>
+          <div class="form-floating">
+            <input type="email" class="form-control" id="Inputemail" name="email" placeholder="name@example.com" required>
+            <label for="floatingInput">Username/Email</label>
+            <div class="invalid-feedback">Your username is required.</div>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="Inputpassword" name="password" placeholder="Password" required>
+            <label for="floatingPassword">Password</label>
+            <div class="invalid-feedback">Your password is required.</div>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="form-floating">
+            <input type="text" class="form-control" hidden id="Inputrole" name="role" placeholder="Employee.." required>
+            <p>Role:</p>
+            <select name="droprole" id="droprole" onclick="addEventListener()" required>
+              <option>Select One</option>
+              <option value="Admin">Admin</option>
+              <option value="Employee">Employee</option>
+            </select>
+            <div class="invalid-feedback">Your role is required.</div>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="form-floating">
+            <input type="date" class="form-control" id="Inputdate" name="birthdate" placeholder="25/03/2004" required>
+            <label for="floatingInput">BirthDate</label>
+            <div class="invalid-feedback">Your birthdate is required.</div>
+          </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="Inputaddress" name="address" placeholder="Rua nova circular..." required>
+            <label for="floatingInput">Address</label>
+            <div class="invalid-feedback">Your address is required.</div>
+          </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="Inputlocation" name="location" placeholder="Porto" >
+            <label for="floatingInput">Location</label>
+            <div class="invalid-feedback">Your location is required.</div>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="form-floating">
+            <input type="text" class="form-control" id="Inputnif" name="nif" min="99999999" max="999999999" onchange="checkNif()" placeholder="244032701" required>
+            <label for="floatingInput">NIF</label>
+            <div class="invalid-feedback">Your nif is required.</div>
+          </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="Inputcell" name="cell" onchange="checkCell()" min="900000000" max="999999999" placeholder="914032701" required>
+            <label for="floatingInput">Telephone</label>
+            <div class="invalid-feedback">Your telephone number is required.</div>
+          </div>
+          
+          <hr class="my-4">
+
+          <button class="button-sign" type="submit"  >Register</button>  
+  
+          <footer class="text-body-secondary py-5">
+            <div class="container">
+              <p class="float-end mb-1">
+                <a href="#">Back to top</a>
+              </p>
+              <p class="mb-1">© 2022–2023</p>
+              <p class="mb-0">Thanks for stoping by LusoTickets! <a href="/"> Visit the homepage!</a>.</p>
+            </div>
+          </footer>
+        </form>
+      </main>
+
+
+      <script>
+        function checkNif() {
+          var input = document.getElementById("Inputnif").value;
+          var number = parseInt(input);
+          
+          if(isNaN(number) ||number < 99999999){
+            alert("NIF must have at least 9 numbers!");
+            document.getElementById("Inputnif").value = "";
+          }
+          if(isNaN(number) ||number > 999999999){
+            alert("NIF must have at least 9 numbers!");
+            document.getElementById("Inputnif").value = "";
+          }
+        }
+
+        function checkCell() {
+          var input = document.getElementById("Inputcell").value;
+          var number = parseInt(input);
+          
+          if(isNaN(number) ||number < 99999999){
+            alert("Cellphone number must have at least 9 numbers!");
+            document.getElementById("Inputcell").value = "";
+          }
+          if(isNaN(number) ||number > 999999999){
+            alert("Cellphone number must have at least 9 numbers!");
+            document.getElementById("Inputcell").value = "";
+          }
+        }
+
+
+        var dropdown = document.getElementById("droprole");
+        var input = document.getElementById("Inputrole");
+
+        // Adiciona um listener de mudança ao elemento select
+        dropdown.addEventListener("change", function() {
+        // Atualiza o valor do input com o valor selecionado do droprole
+          input.value = dropdown.value;
+        });
+
+        var mensagem = new URLSearchParams(window.location.search).get('mensagem');
+
+        if(mensagem){
+          alert(mensagem);
+        }
+
+        </script>
+
+
+
+</body>
+</html>

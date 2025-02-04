@@ -1,0 +1,96 @@
+.box{
+    border-radius: 10px;
+    margin: auto;
+    width: 1200px;
+    height: 1300px;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    padding-left: 50px;
+    padding-right: 10px;
+    border: 1px solid rgb(202, 200, 200);
+    
+}
+
+.row-class{
+    float: left;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 1px solid rgb(202, 200, 200);
+    padding-left: 20px;
+    padding-right: 50px;
+    padding-bottom: 25px;
+}
+
+h4 a {
+    background-color: rgb(17, 99, 252);
+    text-align: center;
+    font-size: medium;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: normal;
+    border: none;
+    width: 70px;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+  }
+
+.box-header{
+    padding-top: 15px;
+    padding-bottom: 25px;
+    margin: auto;
+    text-align: center;
+    font-size: xx-large;
+    font-style: normal;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+.box-text li{
+    padding-top: 20px;
+    text-decoration: none;
+    list-style: none;
+    font-size: medium;
+    font-style: normal;
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+
+.box-image{
+    float: right;
+    width: 650px;
+    object-fit: contain;
+    transition: 0.1ms;
+    padding-top: 25px;
+    padding-left: 10px;
+    padding-right: 30px;
+}
+
+.box-input{
+    border-radius: 5px;
+    border: 1px solid black;
+    padding-top: 5px;
+
+    
+}
+
+
+.button-face{
+    background-color: rgb(17, 99, 252);
+    text-align: center;
+    font-size: medium;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: normal;
+    border: none;
+    width: 50%;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.button-face:hover{
+    background-color: rgb(7, 157, 245);
+    box-shadow: 5px 5px rgb(240, 239, 239)
+}

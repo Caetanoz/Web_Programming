@@ -1,0 +1,67 @@
+<app-nav-bar></app-nav-bar>
+<section class="py-5 text-center container" *ngIf="local">
+  <div class="row py-lg-5">
+   <h3>{{local.name}}</h3>
+ </div>
+</section>
+
+    <div class="container" *ngIf="local">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <app-images *ngIf="local.images" [imgname]="local.images"></app-images>
+            <div class="card-body" >
+              <ul class="card-text" style="list-style: none; width: 100%;">
+                <li></li>
+                <hr class="my-4">
+                <div class="location-container">
+                  <div class="location-info">
+                    <p>--- Location ---</p>
+                    <ul>
+                      <li>Street: {{local.address}}</li>
+                      <li>City: {{local.city}}</li>
+                      <li>Country: {{local.country}}</li>
+                      <br>
+                      <p>-- Coordenates --</p>
+                      <li>Latitude: {{local.latitude}}</li>
+                      <li>Longitude:  {{local.longitude}}</li>
+                    </ul>
+                  </div>
+                  <div class="map-container">
+                    <app-maps *ngIf="local.latitude && local.longitude" [name]="local.name" [latitude]="local.latitude" [longitude]="local.longitude"></app-maps>
+                  </div>
+                </div>
+                <hr class="my-4">
+                <li>Type : {{local.type}}</li>
+                <li *ngIf="local">Duration : {{local.duration}} </li>
+                <li>Description : {{local.description}}</li>
+                <hr class="my-4">
+                <div class="center-div">
+                  <li class="text-center" style="font-family: 'Times New Roman', Times, serif; font-size: larger;">--- Prices ---</li>
+                </div>
+                  <br>
+                  <ul class="card-text prices-container" style="margin: auto;">
+                    <li class="float-left price-item" style="padding-left: 50px;">
+                      <div class="price-box">Juvenil</div>
+                      <div class="value-box">{{local.pricejuvenil}} €</div>
+                    </li>
+                    <li class="float-center price-item">
+                      <div class="price-box">Adult</div>
+                      <div class="value-box">{{local.priceadult}} €</div>
+                    </li>
+                    <li class="float-right price-item">
+                      <div class="price-box">Senior</div>
+                      <div class="value-box">{{local.pricesenior}} €</div>
+                    </li>
+                  </ul>
+              </ul>
+              <div class="d-flex justify-content-between align-items-center"></div>
+              <div class="btn-group" style=" float: right; padding: 10px;">
+                  <button type="submit" class="btn btn-sm btn-checkout" (click)="Viewcheckout(local._id)">BUY</button>
+            </div>
+            <br>
+            <h4><a href="/locals" style="font-size: medium; color: black;">BACK</a></h4>
+          </div>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,34 @@
+<app-nav-bar></app-nav-bar>
+<main>
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Welcome to Portugal´s Paradise</h1>
+          <p class="lead text-body-secondary">Here you can choose what place you can visit in Portugal. From museums, to theatres, to historical places. Here you got to see everything!</p>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3" *ngIf="locals">
+                <div class="col" style="padding-bottom: 30px;" *ngFor="let local of locals; let i=index;">
+                  <div class="card shadow-sm">
+                    <app-images [imgname]="local.images"></app-images>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center; font-size: large;">{{local.name}}</p>
+                      <p class="card-text">Description:</p>
+                      <p class="card-text">- {{local.description}}</p>
+                      <p class="card-text">Duration:</p>
+                      <p class="card-text" *ngIf="local.duration"> {{local.duration}}</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group" style="margin: auto;">
+                            <button type="submit" class="btn btn-sm btn-outline-secondary" style="text-align: center; margin: auto;" (click)="view(local._id)">+Info</button>
+                            <button type="submit" class="btn btn-sm btn-outline-secondary" (click)="Viewcheckout(local._id)" >Checkout</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+    </div>
+  </div>
+    <app-footer></app-footer>
+</main>

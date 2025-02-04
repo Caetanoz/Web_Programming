@@ -1,0 +1,83 @@
+<app-nav-bar></app-nav-bar>
+<section class="py-5 text-center container" *ngIf="local">
+  <div class="row py-lg-5">
+   <h3>{{local.name}}</h3>
+ </div>
+</section>
+    <div class="custom-alert" *ngIf="message">
+      <p>{{ message }}</p>
+    </div>
+    <div class="container" *ngIf="local">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+        <div class="col">
+          <div class="card shadow-sm" >
+            <div class="card-body" >
+              <ul class="card-text" style="list-style: none; float: left;">
+                <app-images *ngIf="local.images" [imgname]="local.images" style="padding-left: 10px; float: right; width: 50%; height: auto; margin-top: 20px;"></app-images>
+                <li></li>
+                <hr class="my-4">
+                <p>--- Location ---</p>
+                <li>Street : {{local.address}}</li>
+                <li>City : {{local.city}}</li>
+                <hr class="my-4">
+                <li>Type : {{local.type}}</li>
+                <hr class="my-4">
+                <li *ngIf="local.duration">Duration : {{local.duration}} min</li>
+              </ul>
+              <ul class="card-text" style="list-style: none;">
+                <br>
+                <ul class="card-text prices-container">
+                  <li class="float-left price-item">
+                      <div class="price-box">Juvenil</div>
+                      <div class="value-box">{{local.pricejuvenil}} €</div>
+                      <input type="number" id="price" name="price" [(ngModel)]="ticket.pricejuvenil" value="{{ local.pricejuvenil }}" hidden>
+                      <div class="value.box" style="width: 100%;">
+                          <input type="number" class="quantity-input" min="0" [(ngModel)]="ticket.quantityjuvenil" name="quantity" placeholder="Quantity" (input)="updateTotal(local.pricejuvenil,local.priceadult,local.pricesenior)" required>
+                        </div>
+                    </li>
+                    <li class="float-center price-item">
+                      <div class="price-box">Adult</div>
+                      <div class="value-box">{{local.priceadult}} €</div>
+                      <input type="number" id="price" name="price" [(ngModel)]="ticket.priceadult" value="{{ local.priceadult }}" hidden>
+                      <div class="value.box" style="width: 100%;">
+                          <input type="number" class="quantity-input" min="0" [(ngModel)]="ticket.quantityadult" name="quantity" placeholder="Quantity" (input)="updateTotal(local.pricejuvenil,local.priceadult,local.pricesenior)" required>
+                        </div>
+                    </li>
+                    <li class="float-right price-item">
+                      <div class="price-box">Senior</div>
+                      <div class="value-box">{{local.pricesenior}} €</div>
+                      <input type="number" id="price" name="price" [(ngModel)]="ticket.pricesenior" value="{{ local.pricesenior }}" hidden>
+                      <div class="value.box" style="width: 100%;">
+                          <input type="number" class="quantity-input" min="0" [(ngModel)]="ticket.quantitysenior" name="quantity" placeholder="Quantity" (input)="updateTotal(local.pricejuvenil,local.priceadult,local.pricesenior)" required>
+                        </div>
+                    </li>
+                </ul>
+                  <br>
+                  <br>
+                <li>Total: <div id="resultado" *ngIf="quantityTotal">{{ calculateTotal() }} €</div></li>
+                <br>
+                <hr class="my-4">
+                <br>
+                <div class="form-floating" style="width: 65%; justify-content: center; align-items: center; display: flex; margin: auto;">
+                  <input type="email" class="form-control" id="Inputemail" name="email" [(ngModel)]="ticket.email" placeholder="name@example.com" required>
+                  <label for="floatingInput">Email</label>
+                  <div class="invalid-feedback">Your email is required.</div>
+                </div>
+                <hr class="my-4" style="width: 25%; justify-content: center; align-items: center; display: flex; margin: auto;">
+                <div class="form-floating" style="width: 65%; justify-content: center; align-items: center; display: flex; margin: auto;">
+                  <input type="text" class="form-control" id="Inputnif" name="nif" min="99999999" max="999999999" [(ngModel)]="ticket.nif" placeholder="NIF" required>
+                  <label for="floatingInput">NIF</label>
+                  <div class="invalid-feedback">Your nif is required.</div>
+                </div>
+              </ul>
+              <div class="d-flex justify-content-between align-items-center"></div>
+              <div class="btn-group" style=" float: right; padding: 10px;">
+                  <button type="submit" class="btn btn-sm btn-checkout" (click)="checkout(local._id, local.name, local.address, local.duration)">Checkout</button>
+            </div>
+            <br>
+            <h4><a href="/events" style="font-size: medium; color: black;">BACK</a></h4>
+          </div>
+
+        </div>
+      </div>
+    </div>

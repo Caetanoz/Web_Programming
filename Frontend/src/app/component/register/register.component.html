@@ -1,0 +1,69 @@
+<app-nav-bar></app-nav-bar>
+<main class="form-signin w-100 m-auto">
+    <br>
+    <br>
+    <br>
+      <h2>LusoTickets</h2>
+      <h1 class="h3 mb-3 fw-normal">Create an account!</h1>
+      <div class="custom-alert" *ngIf="message">
+        <p>{{ message }}</p>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="Inputname" name="name" [(ngModel)]="user.name" placeholder="Francisco" required>
+        <label for="floatingInput">Name</label>
+        <div class="invalid-feedback">Your name is required.</div>
+      </div>
+      <div class="form-floating">
+        <input type="email" class="form-control" id="Inputemail" name="email" [(ngModel)]="user.email" placeholder="name@example.com" required>
+        <label for="floatingInput">Username/Email</label>
+        <div class="invalid-feedback">Your username is required.</div>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="Inputpassword" [(ngModel)]="user.password" name="password" placeholder="Password" required>
+        <label for="floatingPassword">Password</label>
+        <div class="invalid-feedback">Your password is required.</div>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="form-floating">
+        <input type="text" class="form-control" hidden id="Inputrole" [(ngModel)]="user.role" value="Client" required>
+        <div class="invalid-feedback">Your role is required.</div>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="form-floating">
+        <input type="date" class="form-control" id="Inputdate" [(ngModel)]="user.birthdate" name="birthdate" placeholder="25/03/2004" required>
+        <label for="floatingInput">BirthDate</label>
+        <div class="invalid-feedback">Your birthdate is required.</div>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="Inputaddress" [(ngModel)]="user.address" name="address" placeholder="Rua nova circular..." required>
+        <label for="floatingInput">Address</label>
+        <div class="invalid-feedback">Your address is required.</div>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="Inputlocation" [(ngModel)]="user.location" name="location" placeholder="Porto" >
+        <label for="floatingInput">Location</label>
+        <div class="invalid-feedback">Your location is required.</div>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="form-floating">
+        <input type="text" class="form-control" id="Inputnif" name="nif" [(ngModel)]="user.nif" min="99999999" max="999999999"  placeholder="244032701" required>
+        <label for="floatingInput">NIF</label>
+        <div class="invalid-feedback">Your nif is required.</div>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="Inputcell" name="cell" [(ngModel)]="user.cell" min="99999999" max="999999999" placeholder="914032701" required>
+        <label for="floatingInput">Telephone</label>
+        <div class="invalid-feedback">Your telephone number is required.</div>
+      </div>
+      
+      <hr class="my-4">
+
+      <button class="button-sign" (click)="register()" >Register</button>  
+        <app-footer></app-footer>
+  </main>
